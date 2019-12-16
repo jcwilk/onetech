@@ -1,13 +1,16 @@
 "use strict";
 
-const Canvas = require('canvas');
+//const Canvas = require('canvas');
+const { createCanvas, Canvas, Image } = require('canvas');
 const fs = require('fs');
 
 class SpriteProcessor {
   constructor(spritesDir, pngDir) {
     this.spritesDir = spritesDir;
     this.pngDir = pngDir;
-    this.canvas = new Canvas(512, 1024);
+    //this.canvas = new Canvas(512, 1024);
+    this.canvas = createCanvas(512, 1024);
+
     this.context = this.canvas.getContext('2d');
   }
 
@@ -125,7 +128,8 @@ class SpriteProcessor {
   }
 
   drawSpriteImage(sprite, context) {
-    var img = new Canvas.Image;
+    //var img = new Canvas.Image;
+    var img = new Image();
     img.src = fs.readFileSync(`${this.pngDir}/sprite_${sprite.id}.png`);
     sprite.width = img.width;
     sprite.height = img.height;
